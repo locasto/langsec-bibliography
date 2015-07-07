@@ -8,9 +8,10 @@
 \newdef{definition}[theorem]{Definition}
 \newdef{remark}[theorem]{Remark}
 
-\markboth{M. E. Locasto}{A Brief History of Language-Theoretic Security's Roots}
+\markboth{M. E. Locasto}{A Brief Rumination on Language-Theoretic
+  Security's Roots}
 
-\title{A Brief History of LangSec's Roots}
+\title{A Brief Rumination on LangSec's Roots}
         
 \author{
 MICHAEL E. LOCASTO\\
@@ -20,7 +21,10 @@ The Internet
 }
 
 \begin{abstract}
-An abstract.
+An annotated bibliography of LangSec elements appearing in academic
+information security papers.  This paper is an attempt at documenting
+my encounters with ideas similar to LangSec before its specific
+articulation circa 2011-2012 by Sassaman, Patterson, and Bratus.
 \end{abstract}
             
 \category{D.2.0}{General}{Protection Mechanisms}
@@ -35,7 +39,7 @@ An abstract.
             
 \begin{bottomstuff} 
 Authors' addresses: 
-M. Locasto. Department of Computer Science, University of Calgary, 2500 University Drive NW., Calgary, AB, T2N 1N4. Canada
+M. Locasto
 \newline
 \end{bottomstuff}
             
@@ -43,50 +47,234 @@ M. Locasto. Department of Computer Science, University of Calgary, 2500 Universi
 
 \section{Introduction}
 
-This paper is an introduction and overview of my perspective on LangSec
-which has received increasing attention over the past four years.
+In my opinion, LangSec is one of the most interesting and compelling
+ideas to emerge in computer and network systems security over the past
+few years.  In this paper, I review a number of papers that have
+LangSec elements or roots.  In many cases, a paper I highlight
+identifies quite explicitly some LangSec or weird machine ideas, but
+(as the terms had not yet been widely used or publicized) does not yet
+explicitely identify those ideas as such.  As is the case with most
+ideas whose time has come, there is a body of work and a movement of
+intellectual themes from others in the field that complement and give
+context to the later idea.
 
-This section includes the main message: ``research work in this area
-is defining the boundary between theoretically impossible problems and
-the merely hard when trying to get algorithms (as expressed in real,
-complex software systems) to deal with unanticipated and malformed
-input and poorly specified input languages.''
+In this brief review, I attempt to list some of the ideas and papers I
+personally encountered that relate to LangSec and in some cases
+predate its articulation.  The papers I discuss below have a certain
+bias toward intrusion detection and intrusion response (vulnerability
+identification, exploit signature generation, etc.).
 
-List major crisis and motivation of the work in this area.
+Research work in the area of Langec is defining the boundary between
+theoretically impossible problems and the merely hard when trying to
+get algorithms (as expressed in real, complex software systems) to
+deal with unanticipated and malformed input and poorly specified input
+languages.
 
-Outline the structure of the paper; how it is organized (not just an
-enumeration, but rather why it is organized that way: what are the
-logical or temporal relationships between the major work). Forecast the
-timeline section.
+%{\bf Outline} Outline the structure of the paper; how it is organized
+%(not just an enumeration, but rather why it is organized that way:
+%what are the logical or temporal relationships between the major
+%work). Forecast the timeline section.
 
-\subsection{Timeline}
+\section{Papers}
 
-Contains a timeline of the work
+This section is a necessarily incomplete list of academic research
+papers that touch on ideas, concepts, and themes related to
+LangSec. There is no particular order to the listing of these papers;
+it is essentially stream-of-recall. I may re-order them later.
 
-history; overview; phase 1, 2, 3
-
-\section{Themes}
-
-What are the major themes in play here?
+It is worth reading the ``official'' LangSec and Weird Machine papers
+from the LangSec website\footnote{\url{http://www.langsec.org/}}:
 
 \begin{enumerate}
-  \item relations to other areas
-  \item systems work
-  \item theory work
-  \item tbd
+ \item ``The Halting Problems of Network Stack Insecurity'', Len Sassaman, Meredith L. Patterson, Sergey Bratus, Anna Shubina
+ \item ``Exploit Programming: from Buffer Overflows to Weird Machines and Theory of Computation'', Sergey Bratus, Michael E. Locasto, Meredith L. Patterson, Len Sassaman, Anna Shubina
+ \item ``A Patch for Postel's Robustness Principle'', Len Sassaman, Meredith L. Patterson, Sergey Bratus
+ \item ``Beyond Planted Bugs in ``Trusting Trust'': The Input-Processing Frontier'' by Sergey Bratus, Trey Darley, Michael Locasto, Meredith L. Patterson, Rebecca ``.bx'' Shapiro, Anna Shubina
+ \item ``Security Applications of Formal Language Theory'' by Len Sassaman, Meredith L. Patterson, Sergey Bratus, Michael E. Locasto, Anna Shubina [Dartmouth Computer Science Technical Report TR2011-709], published in IEEE Systems Journal, Volume 7, Issue 3, Sept. 2013
 \end{enumerate}
 
-\section{Approach/Domain 1}
-papers in this domain do X.
-\section{Approach/Domain 2}
+{\bf The UCDavis ``Deriving'' paper}\cite{Crandall:2005:DUV:1102120.1102152}
 
-\section{Summary}
+Crandall et al.'s paper ``On Deriving Unknown Vulnerabilities from
+Zero-day Polymorphic and Metamorphic Worm Exploits'' was one of the
+first places I saw an attempt to meaningfully formalize the operation
+of what Bratus later came to call ``weird machines''~\cite{XXX}.
+Although this CCS 2005 paper is where I first saw the
+``Alpha-Gamma-Upsilon'' model proposed by this UCDavis team, a closer
+reading shows that the model itself was proposed in an earlier paper
+from the same team \cite{XXX}.  This paper is also notable because it
+fits squarely into current work circa 2005 dealing with automated
+response to exploits by deriving a signature of the software {\em
+  weakness} rather than the particular exploit itself.
 
-Major challenges.
+{\bf ``Fractures'' paper}\cite{Crandall:2012:HVS:2413296.2413309}
 
-Where are we headed?
+Crandall and Oliveira collaborated to write an interesting NSPW paper
+that attempts to explore the nature of vulnerabilities through the
+analogy of holographs.  The key idea here is the interefering role
+that abstraction plays across system boundaries, and how this designed
+and manifest lack of knowledge on different sides of system layers
+contributes to computationally unequal processing of information.
 
-FIN.
+{\bf ``SQLPrevent by San-Tsai Sun (UBC)''}
+
+One of the earliest instances of a language-based approach to
+protecting against SQL injection attacks I encountered (circa
+2007--2008) was by San-Tsai Sun at UBC's LERSSE lab.  Up until this
+point in time, most SQL injection defenses I'd seen in practive during
+my time as a web developer were based on character escaping (in the
+Web language or library itself, and thus likely a flawed
+implementation) or the use of stored procedures (underutilized,
+particularly in casual and basic web programming).  In a series of
+technical reports and a journal paper from 2010\cite{XXX}, San-Tsai
+Sun describes SQLPrevent, a system .
+
+In the context of discussing SQLPrevent's language-based filtering
+approach to preventing SQLi, It is noteworthy that Patterson's
+Dejector\footnote{\url{http://sourceforge.net/projects/libdejector/}}
+library\footnote{\url{http://www.thesmartpolitenerd.com/code/dejector.html}}
+(2005) formed part of initial inspiration for Sassaman and Patterson's
+later exposition and naming of LangSec. More recently, Dan Kaminsky's
+Interpolique from
+2010\footnote{\url{http://dankaminsky.com/interpolique/}} seeks to
+counter the ill effects of using string composition as a method of
+building SQL queries (i.e., SQL queries are not simply concatenated
+strings, but rather structured artifacts that should be built up in a
+disciplined fashion, with operators that respect the types being
+manipulated).
+
+\subsection{Recognizing Network Traffic (IDS)}
+
+The area of network traffic recognition, filtering, and analysis is a
+rich area for witnessing the problems that LangSec so amply
+identifies; in many instances, the myriad and seemingly ad hoc
+problems that IDS, firewalls, Deep Packet Inspection, protocol
+identification, and worm signature generation all encounter are given
+a unifying explanation by LangSec: solving the Halting Problem at line
+speed is a daydream.
+
+Two classic papers discussing the difficulties of ``recognizing''
+network traffic are ``IDS Evasion Attacks''~\cite{XXX} by Ptacek and
+Newsham and ``Traffic Normalization'' (by Handley et al.)~\cite{XXX}.
+
+
+{\bf ``Remotely Exploiting the PHY Layer''}
+
+Goodspeed et al.~\cite{}'s WOOT 2011 paper about exploiting noise in
+frame delimiters is a more recent example of the problems due to
+recognition of network frames and packets.  This work demonstrates how
+PHY-layer (layer 1) frames can be injected in traffic without local
+physical access.  The technique works by embedding a valid layer 1
+preamble into a packet and either relying on normal noise or possibly
+induced noise (e.g., a high packet rate) to scramble the ``real''
+frame synchronization at the receiver.
+
+\begin{enumerate}
+  \item  \url{http://travisgoodspeed.blogspot.ca/2011/09/remotely-exploiting-phy-layer.html}
+  \item  \url{http://www.usenix.org/events/woot11/tech/final_files/Goodspeed.pdf}
+  \item  \url{https://www.usenix.org/conference/woot11/packets-packets-orson-welles-band-signaling-attacks-modern-radios}
+  \item \url{http://www.phrack.org/issues.html?issue=68&id=4&mode=txt} 
+    (see 0x06, ``How I misunderstood digital radio; or, ``Weird machines'' are in radio, too!'' by M.Laphroaig pastor@phrack )
+\end{enumerate}
+
+This work was followed up by a presentation at WOOT 2014 exploring the
+n-bit symbols that actually make up each ``character'' of a
+synchronization preamble.
+
+\subsection{Other Work}
+
+Vulnerable Compliance (Geer)
+
+G. Wurster, P. C. van Oorschot. The Developer is the Enemy. In
+Proc. 2008 Workshop on New Security Paradigms, September 2008. pp
+89-97.
+
+{\bf ``Beyond Heuristics: Learning to Classify Vulnerabilities and Predict Exploits''}
+
+
+\subsection{Selected Papers from IEEE LangSec 2015 Workshop}
+
+Unparsers
+
+
+\subsection{On the use of ``Context'' in Systems Security}
+
+Papers related to intrusion detection are particularly adept at making
+use of unstructured context in improving their detection rates or
+lowering their reported false positive rates.
+
+``Modeling System Calls for Intrusion Detection with Dynamic Window Sizes''
+
+``Gray-Box Extraction of Execution Graphs for Anomay Detection''
+
+``Anomaly Detection Using Call Stack Information''
+
+``Environment-Sensitive Intrusion Detection''
+
+``Exploiting Execution Context for the Detection of Anomalous System Calls''
+
+
+
+\section{Links}
+
+
+    http://www.darkreading.com/vulnerability/taming-bad-inputs-means-taking-aim-at-we/240152171
+    http://programmingisterrible.com/post/42215715657/postels-principle-is-a-bad-idea
+    Programming with Nothing: http://experthuman.com/programming-with-nothing
+    Learning to classify vulns: http://dl.acm.org/citation.cfm?doid=1835804.1835821
+    PHY layer hacking: http://2012.hackitoergosum.org/blog/schedule/talks#Strangeand
+    Catastrophic backtracking in regular expressions http://t.co/KWVDhLyI
+    From Buffer Overflows to Weird Machines
+    Cyberpatterns
+    The Halting Problems of Network Stack Insecurity
+    Security Applications of Formal Language Theory
+    Packets in Packets (Goodspeed)
+    Vulnerable Compliance (Geer)
+    IDS Evasion Attacks (Ptacek and Newsham)
+    Traffic Normalization (Handley)
+    Crandall CCS 2005
+    http://www.isg.rhul.ac.uk/tls/
+    travis goodspeed: ``Remotely Exploiting the PHY Layer''
+        http://travisgoodspeed.blogspot.ca/2011/09/remotely-exploiting-phy-layer.html
+        WOOT 2011 paper: http://www.usenix.org/events/woot11/tech/final_files/Goodspeed.pdf
+    https://www.usenix.org/conference/woot11/packets-packets-orson-welles-band-signaling-attacks-modern-radios
+        http://www.phrack.org/issues.html?issue=68&id=4&mode=txt (see 0x06, ``How I misunderstood digital radio; or, ``Weird machines'' are in radio, too!'' by M.Laphroaig pastor@phrack )
+
+Misc:
+
+    http://www.microsoft.com/typography/otspec/featuretags.htm
+    evading AV: http://blog.endpoint.com/2013/01/evading-anti-virus-metasploit.html
+    http://programmingisterrible.com/post/42432568185/how-to-parse-ruby
+    packet of death: http://appliance.cloudshark.org/news/cloudshark-in-the-wild/intel-packet-of-death-capture/
+    blocking content based on executable env: http://arstechnica.com/security/2013/01/firefox-to-block-content-based-on-java-reader-and-silverlight/
+    recognize a dialup? i.imgur.com/Q3lKIr1.jpg
+    http://www.johndcook.com/blog/2013/02/21/can-regular-expressions-parse-html-or-not/
+    ``evil'' code: http://erratasec.blogspot.ca/2013/03/the-debate-over-evil-code.html
+
+
+
+%\section{TBD}
+%\subsection{Timeline}
+%Contains a timeline of the work
+%history; overview; phase 1, 2, 3
+%\section{Themes}
+%What are the major themes in play here?
+
+%\begin{enumerate}
+%  \item relations to other areas
+%  \item systems work
+%  \item theory work
+%  \item tbd
+%\end{enumerate}
+
+%\section{Approach/Domain 1}
+%papers in this domain do X.
+%\section{Approach/Domain 2}
+
+%\section{Summary}
+%Major challenges.
+%Where are we headed?
+%FIN.
 
 \bibliographystyle{acmtrans}
 \bibliography{langsec}
